@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    azure:
+      compatibility-verifier:
+        enabled: false
+      keyvault:
+        secret:
+          property-sources[0]:
+              # name: key-vault-property-source-1
+            endpoint: https://kvdevapps1.vault.azure.net/
+          property-source-enabled: true
+      servicebus:
+        entity-type: topic
+        namespace: servicebus204-2932
+        connection-string: ${servicebusconnection}
+
+messaging:
+  servicebus:
+    connection-string: ${servicebusconnection}
+
+
+azure:
+  cosmosdb:
+    uri: ${mmdevdburl}
+    key: ${mmdevdbkey}
+    secondaryKey: ${mmdevdbsecondarykey}
+    database: mmdev2932
+server:
+  port: 8070
+
