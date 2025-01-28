@@ -48,7 +48,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 
 	implementation 'com.azure.spring:spring-cloud-azure-starter-servicebus:5.17.0'
-	implementation 'com.azure.spring:spring-messaging-azure-servicebus:5.17.0'
+//	implementation 'com.azure.spring:spring-messaging-azure-servicebus:5.17.0'
 
 	implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

@@ -1,18 +1,23 @@
 package com.mitchmele.feedback_listener;
 
-import com.azure.spring.messaging.servicebus.implementation.core.annotation.ServiceBusListener;
+import com.azure.messaging.servicebus.ServiceBusProcessorClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.boot.SpringApplicationShutdownHandlers;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Service
+@Component
 @RequiredArgsConstructor
 public class BusMessageListener { //this is a backend service for the screens UI.
 
-    @ServiceBusListener(destination = "bustopic2932", group = "feedback")
-    public void processMessages(String message) {
-        log.info("CONSUMER MESSAGE: {}", message);
+    private final ServiceBusProcessorClient screensBusProcessor;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void listen() {
+        screensBusProcessor.start();
     }
 
 }
