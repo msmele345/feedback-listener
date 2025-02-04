@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/retry")
 @RequiredArgsConstructor
 public class RetryErrorController {
 
     private final FeedbackRetryService feedbackRetryService;
 
-    @PostMapping("/api/v1/error/feedback")
+    @PostMapping("/feedback")
     public ResponseEntity<ProcessingResult> retryProcessing(@RequestBody ErrorEventPayload payload) {
         return feedbackRetryService.processAndSaveFeedback(payload);
     }

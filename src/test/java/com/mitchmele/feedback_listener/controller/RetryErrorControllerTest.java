@@ -90,3 +90,5 @@ class RetryErrorControllerTest {
 
     }
 }
+
+//https://dzone.com/articles/integration-testing-in-spring-boot-1

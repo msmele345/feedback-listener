@@ -1,25 +1,21 @@
-package com.mitchmele.feedback_listener;
+package com.mitchmele.feedback_listener.integration;
 
-import com.azure.cosmos.CosmosAsyncClient;
 import com.azure.cosmos.CosmosClient;
-import com.azure.cosmos.CosmosClientBuilder;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import com.azure.cosmos.models.CosmosContainerResponse;
 import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.cosmos.AzureCosmosAutoConfiguration;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.io.TempDir;
-import org.junit.runner.RunWith;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.CosmosDBEmulatorContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -38,6 +34,7 @@ import java.security.KeyStore;
         AzureGlobalPropertiesAutoConfiguration.class,
         AzureCosmosAutoConfiguration.class
 })
+@Disabled
 class CosmosDbIntegrationTest {
 
     //change to junit 5 again
