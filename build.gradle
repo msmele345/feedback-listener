@@ -28,6 +28,7 @@ azurewebapp {
 	}
 }
 
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -54,8 +55,13 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+
+//	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
+	implementation 'org.testcontainers:azure:1.20.4'
+	testImplementation 'com.azure.spring:spring-cloud-azure-testcontainers:5.17.0'
+	//testImplementation "org.testcontainers:azure:1.20.4" or spring-cloud-azure-testcontainers or orgtestcontainers.azure?
+
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -66,5 +72,13 @@ dependencyManagement {
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+	useJUnitPlatform {
+		excludeTags "integrationTest"
+	}
+}
+
+tasks.register("integrationTest", Test) {
+	useJUnitPlatform {
+		includeTags "integrationTest"
+	}
 }

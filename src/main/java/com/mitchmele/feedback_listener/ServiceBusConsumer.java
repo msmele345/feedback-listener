@@ -2,13 +2,12 @@ package com.mitchmele.feedback_listener;
 
 import com.azure.spring.messaging.servicebus.implementation.core.annotation.ServiceBusListener;
 import com.mitchmele.feedback_listener.model.ProcessingResult;
-import com.mitchmele.feedback_listener.model.ProcessingStatus;
 import com.mitchmele.feedback_listener.service.DbService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static com.mitchmele.feedback_listener.service.AppLogger.logResult;
+import static com.mitchmele.feedback_listener.util.AppLogger.logResult;
 
 @Slf4j
 @Service

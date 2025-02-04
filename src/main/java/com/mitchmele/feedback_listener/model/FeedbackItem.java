@@ -23,4 +23,6 @@ public class FeedbackItem {
     private String email;
 
     private String submissionTime;
+
+    private boolean isErrorRetry;
 }

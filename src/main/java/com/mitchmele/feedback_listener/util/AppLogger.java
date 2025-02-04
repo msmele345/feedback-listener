@@ -1,4 +1,4 @@
-package com.mitchmele.feedback_listener.service;
+package com.mitchmele.feedback_listener.util;
 
 import com.mitchmele.feedback_listener.model.ProcessingResult;
 import com.mitchmele.feedback_listener.model.ProcessingStatus;
@@ -14,5 +14,12 @@ public final class AppLogger {
         } else {{
             log.error("failed to save feedback to Db: {}", message);
         }}
+    }
+
+    public static void logSuccess(String id) {
+        log.info("feedback saved for id: {}", id);
+    }
+    public static void logFailure(String message) {
+        log.info("error while saving feedback: {}", message);
     }
 }
