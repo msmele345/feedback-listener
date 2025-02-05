@@ -1,14 +1,11 @@
 package com.mitchmele.feedback_listener.integration;
 
 import com.azure.cosmos.CosmosClient;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import com.azure.cosmos.models.CosmosContainerResponse;
 import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.cosmos.AzureCosmosAutoConfiguration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,10 +31,8 @@ import java.security.KeyStore;
         AzureGlobalPropertiesAutoConfiguration.class,
         AzureCosmosAutoConfiguration.class
 })
-@Disabled
+@Disabled("CosmosDBEmulatorContainer only offers support for intel based macs - Apple Silicon is not supported.")
 class CosmosDbIntegrationTest {
-
-    //change to junit 5 again
 
     @TempDir
     private static File tempFolder;
@@ -67,20 +62,9 @@ class CosmosDbIntegrationTest {
         System.setProperty("javax.net.ssl.trustStoreType", "PKCS12");
     }
 
-//    @BeforeEach
-//    public void setClient() throws Exception {
-//        cosmosClient = new CosmosClientBuilder()
-//                .gatewayMode()
-//                .endpointDiscoveryEnabled(false)
-//                .endpoint(cosmos.getEmulatorEndpoint())
-//                .key(cosmos.getEmulatorKey())
-//                .buildClient();
-//    }
-
-
-    @Test
-    void contextLoads() {
-
+    @AfterAll
+    static void tearDown() {
+        cosmos.stop();
     }
 
     @Test
