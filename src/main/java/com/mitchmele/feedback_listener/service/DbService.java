@@ -20,6 +20,7 @@ public class DbService {
 
     private final ObjectMapper objectMapper;
     private final FeedbackRepository feedbackRepository;
+    private final RetryToFeedbackItemMapper retryToFeedbackItemMapper;
 
     public ProcessingResult saveMessage(String message) {
         try {
@@ -37,12 +38,7 @@ public class DbService {
     }
 
     public ProcessingResult saveRetryMessage(ErrorEventPayload errorEventPayload) {
-        FeedbackItem feedbackItem = new FeedbackItem();
-        feedbackItem.setFeedbackId(errorEventPayload.getFeedbackId());
-        feedbackItem.setEmail(errorEventPayload.getEmail());
-        feedbackItem.setContent(errorEventPayload.getEmail());
-        feedbackItem.setSubmissionTime(errorEventPayload.getSubmissionTime());
-        feedbackItem.setErrorRetry(true);
+        final FeedbackItem feedbackItem = retryToFeedbackItemMapper.mapFrom(errorEventPayload);
 
         try {
             final FeedbackItem savedItem = feedbackRepository.save(feedbackItem);

@@ -65,7 +65,7 @@ class RetryErrorControllerTest {
         Mockito.when(mockRetryService.processAndSaveFeedback(any()))
                 .thenReturn(new ResponseEntity<>(expectedResult, HttpStatus.CREATED));
 
-        mockMvc.perform(post("/api/v1/error/feedback")
+        mockMvc.perform(post("/api/v1/retry/feedback")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(errorEventPayload))
         ).andExpect(status().isCreated());
@@ -81,7 +81,7 @@ class RetryErrorControllerTest {
 
         final ErrorResponse expectedRes = ErrorResponse.builder().errorMessage("retry attempt failed").build();
 
-        mockMvc.perform(post("/api/v1/error/feedback")
+        mockMvc.perform(post("/api/v1/retry/feedback")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(errorEventPayload))
         )
